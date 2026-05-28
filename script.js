@@ -72,24 +72,39 @@
     });
   }
 
-  /* ── Scroll-triggered reveal (IntersectionObserver) ─────── */
+  /* ── Section scroll reveal (IntersectionObserver) ───────── */
   if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(function (entries) {
+    const sectionObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          sectionObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.section-reveal').forEach(function (el) {
+      sectionObs.observe(el);
+    });
+  }
+
+  /* ── Card scroll reveal (staggered, IntersectionObserver) ── */
+  if ('IntersectionObserver' in window) {
+    const cardObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.style.animationPlayState = 'running';
-          obs.unobserve(entry.target);
+          cardObs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Pause initially; play on scroll-in
-    document.querySelectorAll('.service-tile, .team-card, .job-card, .gallery-item')
+    document.querySelectorAll('.team-card, .job-card, .gallery-item')
       .forEach(function (el, i) {
         el.style.animationPlayState = 'paused';
         el.style.animationDelay = (i * 0.05) + 's';
         el.classList.add('reveal');
-        obs.observe(el);
+        cardObs.observe(el);
       });
   }
 
