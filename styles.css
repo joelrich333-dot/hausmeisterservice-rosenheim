@@ -881,19 +881,19 @@ blockquote.quote cite {
   height: 88vh;
   min-height: 520px;
   max-height: 900px;
-  /* overflow: hidden removed — image uses position:absolute inset:0 (no clip needed),
-     and overflow:hidden was clipping Syne 800 descenders at the bottom line */
+  overflow: hidden;
   margin-top: 0;
 }
 .hero-fullwidth-bg {
   position: absolute;
   inset: 0;
 }
-.hero-fullwidth-bg img {
+.hero-fullwidth-bg img,
+.hero-fullwidth-bg video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center center;
   display: block;
 }
 .hero-fullwidth-overlay {
