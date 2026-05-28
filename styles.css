@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ── Google Fonts preload hint (also declared in HTML <link>) ── */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..120,400;12..120,500;12..120,600;12..120,700;12..120,800&family=Outfit:wght@300;400;500;600&display=swap');
 
 /* ── Design Tokens ─────────────────────────────────────────── */
 :root {
@@ -26,7 +26,7 @@
   --haze-border: #e2ebe5;
 
   /* Typography */
-  --font-display: 'Syne', 'Helvetica Neue', sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
   --font-body:    'Outfit', system-ui, sans-serif;
 
   /* Spacing scale */
@@ -286,15 +286,15 @@ section { padding: var(--s-xl) 0; }
 /* ── Typography ────────────────────────────────────────────── */
 h1, h2, h3, h4, h5 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.35;
-  letter-spacing: -.005em;
+  letter-spacing: -.02em;
   text-wrap: balance;
   color: var(--ink);
 }
 
-h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); font-weight: 700; }
-h2 { font-size: clamp(2rem, 4.5vw, 2.85rem); font-weight: 600; }
+h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); font-weight: 800; }
+h2 { font-size: clamp(2rem, 4.5vw, 2.85rem); font-weight: 700; }
 h3 { font-size: clamp(1.15rem, 2.5vw, 1.4rem); font-weight: 600; }
 
 p {

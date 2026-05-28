@@ -25,7 +25,7 @@ Komplette Multi-Page Website für "Hausmeisterservice Rosenheim" (Inhaber: Flori
 - Deployed auf Vercel (Production) + GitHub
 
 📍 AKTUELLER STAND
-Website ist live und vollständig deployed. Letzter Schritt war das Entfernen der Galerie aus der Navigation. Nächste geplante Aufgabe (morgen): Team-Fotos für 6 Teammitglieder einbauen.
+Website ist live und vollständig deployed. Letzter Design-Overhaul: Syne-Font, Pill-Buttons mit Fill-from-left, Winterdienst-Fullbleed, editorial Leistungen-Grid, Favicon, Scroll-Reveal. Nächste geplante Aufgabe: Team-Fotos für 6 Teammitglieder einbauen (werden per Chat-Upload gesendet).
 
 🐛 BEKANNTE BUGS & OFFENE FEHLER
 - galerie.html existiert noch als Datei, ist aber aus der Nav entfernt (kann gelöscht oder ignoriert werden)
