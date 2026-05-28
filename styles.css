@@ -287,10 +287,11 @@ section { padding: var(--s-xl) 0; }
 h1, h2, h3, h4, h5 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.22;
+  line-height: 1.35;
   letter-spacing: -.005em;
   text-wrap: balance;
   color: var(--ink);
+  padding-bottom: 0.08em; /* Syne 800 font metrics: ink extends below line-box */
 }
 
 h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); font-weight: 800; }
@@ -478,7 +479,7 @@ a:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; border-ra
 }
 .page-hero h1 {
   font-size: clamp(2rem, 5vw, 3.25rem);
-  line-height: 1.25;
+  line-height: 1.38;
   margin-bottom: .875rem;
 }
 .page-hero p  { font-size: 1.075rem; }
@@ -881,7 +882,8 @@ blockquote.quote cite {
   height: 88vh;
   min-height: 520px;
   max-height: 900px;
-  overflow: hidden;
+  /* overflow: hidden removed — image uses position:absolute inset:0 (no clip needed),
+     and overflow:hidden was clipping Syne 800 descenders at the bottom line */
   margin-top: 0;
 }
 .hero-fullwidth-bg {
@@ -923,7 +925,7 @@ blockquote.quote cite {
 .hero-fullwidth-text h1 {
   color: #fff;
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-  line-height: 1.25;
+  line-height: 1.38;
   text-shadow: 0 2px 16px rgba(0,0,0,.25);
   margin-bottom: 1.25rem;
 }
@@ -1034,7 +1036,7 @@ blockquote.quote cite {
 
 .showcase-text h2 {
   font-size: clamp(1.4rem, 3vw, 2rem);
-  line-height: 1.25;
+  line-height: 1.38;
   margin-bottom: .875rem;
 }
 .showcase-text p {
@@ -1207,7 +1209,7 @@ blockquote.quote cite {
   padding: var(--s-2xl) var(--s-md);
 }
 .showcase-fullbleed-content > * { max-width: 560px; }
-.showcase-fullbleed-content h2 { color: #fff; line-height: 1.25; margin-bottom: .875rem; }
+.showcase-fullbleed-content h2 { color: #fff; line-height: 1.38; margin-bottom: .875rem; }
 .showcase-fullbleed-content p { color: rgba(255,255,255,.92); margin-bottom: var(--s-md); }
 .section-label--light { color: rgba(255,255,255,.75); }
 .section-label--light::before { background: rgba(255,255,255,.75); }
