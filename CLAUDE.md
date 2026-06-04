@@ -2,75 +2,61 @@
 
 ---
 
-PROJEKT-ZUSAMMENFASSUNG — Hausmeisterservice Rosenheim — 2026-05-28
+PROJEKT-ZUSAMMENFASSUNG — Hausmeisterservice Rosenheim / Video Scrubbing Hero — 04.06.2026
 
 🎯 ZIEL
-Komplette Multi-Page Website für "Hausmeisterservice Rosenheim" (Inhaber: Florian Barth, Bad Aibling) als reines HTML/CSS/JS-Projekt — deployed auf Vercel und GitHub. Professioneller, moderner Webauftritt der den alten Auftritt ablöst.
+Komplette Multi-Page Website für "Hausmeisterservice Rosenheim" (Inhaber: Florian Barth, Bad Aibling) als reines HTML/CSS/JS-Projekt — deployed auf Vercel. Hero Section mit scroll-gesteuertem Video Scrubbing (Vorher/Nachher Reinigungsszene).
 
 ✅ BEREITS ERLEDIGT
 - 7 HTML-Seiten: index, ueber-uns, unser-team, jobs, partner, impressum, datenschutz
-- galerie.html existiert noch als Datei, ist aber aus der Navigation entfernt
-- Design: "Modern Clean" — Bricolage Grotesque + Outfit Fonts, Grün/Weiß/Dunkelgrau
-- Glassmorphism Sticky-Header mit mobilem Hamburger-Menü (script.js)
-- Vollbild-Hero auf index.html mit VIDEO (videos/hero.mp4 — Pexels Freestock, 6.0 MB)
-  statt Bild — autoplay, muted, loop, playsinline, object-position: center top
-- Dunkles Overlay + Headline + 2 CTAs (Termin anfragen / Kontakt aufnehmen)
-- 5 Service-Showcase-Sektionen (abwechselnd links/rechts): Hausmeisterservice,
-  Gebäude-/Büroreinigung, Gartenanlagen, Winterdienst (Fullbleed), Aufbauservice
-- 13 Emoji-Leistungskacheln als 2-Spalten-Liste mit Trennlinien
-- Pill-Buttons mit Fill-from-left Hover-Animation
-- Scroll-Reveal via IntersectionObserver (section-reveal / is-visible)
-- Favicon (favicon.svg) — grünes Haus-Icon — in allen 7 HTML-Seiten
-- Alle Unterseiten vollständig: Über uns, Team, Jobs, Partner, Impressum, Datenschutz
-- Footer auf allen Seiten: Kontakt, Facebook, Impressum/Datenschutz, Copyright
-- 7 Bilder (images/): hero.jpg, galerie-1 bis galerie-6.jpg
-- Deployed auf Vercel (Production) + GitHub (letzter Commit: 800ff8e)
+- Design: Bricolage Grotesque + Outfit, Grün/Weiß/Dunkelgrau
+- Glassmorphism Sticky-Header mit mobilem Hamburger-Menü
+- Video Scrubbing Hero Section eingebaut:
+  • hero_scrub.mp4 (25MB, 1076×1924 Portrait, 10s, von Kling O3 via ElevenLabs generiert)
+  • ffmpeg optimiert: libx264, CRF 18, -g 2, faststart, kein Audio
+  • JS: Video wird als Blob geladen (garantiert seekbar), currentTime per scroll gesteuert
+  • Sticky-Position, 5× Viewport Scrollbereich, grüner Fortschrittsbalken, "Scrollen"-Hint
+  • Headline: "Ihr Gebäude. Makellos sauber."
+- 5 Service-Showcase-Sektionen + 13 Leistungskacheln
+- Footer auf allen Seiten
+- Deployed auf Vercel (letzter Commit: 8f51ae6)
 
 📍 AKTUELLER STAND
-Website ist live unter https://hausmeisterservice-rosenheim.vercel.app — alle 7 Seiten funktionieren. In dieser Session: Hero-Bild durch Pexels-Video ersetzt (videos/hero.mp4). Ein Scroll-Scrub-Effekt (Ferrari-Style via GSAP) wurde experimentell versucht aber auf Wunsch des Users vollständig rückgängig gemacht — nie deployed, lokal geblieben.
+Video Scrubbing Hero ist live und funktioniert technisch einwandfrei. Offenes Problem: Das Video wirkt unscharf, weil es Portrait (1076×1924, 9:16) ist, aber der Hero Landscape (16:9 Fullscreen) ist → Browser muss 1.78× upscalen → Blur.
 
 🐛 BEKANNTE BUGS & OFFENE FEHLER
-- galerie.html existiert noch als Datei, ist aber aus der Nav entfernt (kann gelöscht werden)
-- GitHub ↔ Vercel Auto-Deploy-Verbindung nicht hergestellt — Deploys laufen manuell via `vercel --prod --yes`
-- Team-Fotos fehlen noch für 6 Teammitglieder (Initialen-Avatare als Platzhalter)
-- Das Hero-Video zeigt den Arbeiter von hinten — kein Gesicht sichtbar (Pexels-Video das User selbst heruntergeladen hat)
+- 🔴 [hero] Video erscheint unscharf/niedrig aufgelöst weil Portrait-Video (1076px breit) auf Fullscreen-Landscape-Hero (1920px) upgeskaliert wird (1.78× Upscale). Encoding-Qualität ist gut (CRF 18), das Problem ist rein geometrisch/CSS.
+- 🟡 GitHub ↔ Vercel Auto-Deploy nicht verbunden — Deploy manuell via `vercel --prod --yes`
+- 🟡 Team-Fotos fehlen für 6 Teammitglieder (Initialen-Avatare als Platzhalter)
 
 ⏭️ NÄCHSTE SCHRITTE
-1. Optional: besseres Hero-Video finden (Person von vorne sichtbar, cinematic)
-2. Team-Fotos einbauen (Joel schickt sie per Chat-Upload):
-   - Mit Foto: Florian Barth, J. Eder, M. Mandl, C. Kainzmaier, E. Pasztorne Novak, L. Pasztor
-   - Ohne Foto (bleiben Initialen-Avatar): P. Reheis, L. Morina Haradini, M. Nebihi, E. Nebihi
-3. Optional/später: WhatsApp-Button (floating), Kontaktformular-Seite, Telefonnummer im Header,
-   Kundenbewertungen-Sektion, OpenStreetMap-Karte, eigene Domain
-4. Nach jedem Schritt: `git add . && git commit && git push origin main` + `vercel --prod --yes`
+1. Qualitätsproblem beheben — zwei Optionen (Joel entscheidet):
+   A) Video neu in Kling als 16:9 Landscape (1920×1080) generieren → bester Fix
+   B) CSS-Fix: Portrait-Video zentriert auf volle Höhe + gleiches Video stark geblurrt als Background (wie alter Hero-Aufbau) → sofort umsetzbar ohne neues Video
+2. Nach Fix: `git add . && git commit -m "..."` + `vercel --prod --yes`
+3. Optional: Team-Fotos einbauen (Joel schickt Bilder)
+4. Optional: WhatsApp-Button, Kontaktformular, Bewertungen-Sektion
 
 📁 WICHTIGE DATEIEN & STRUKTUR
-- ~/hausmeisterservice-rosenheim/ — Projektordner (lokaler Pfad)
-- index.html — Startseite (Video-Hero + 13 Leistungs-Kacheln + 5 Showcase-Sektionen)
-- ueber-uns.html — Über uns
-- unser-team.html — Team (10 Cards, 6 Fotos noch ausstehend)
-- jobs.html — Stellenanzeigen
-- partner.html — Elektro Riedl + Kundenbadges
-- impressum.html / datenschutz.html — Rechtstexte
-- styles.css — Gesamtes Design-System (CSS-Variablen, alle Komponenten)
-- script.js — Hamburger-Nav, Escape-Close, Scroll-Reveal (IntersectionObserver)
-- favicon.svg — SVG Haus-Icon (grün)
-- videos/hero.mp4 — Hero-Video (6.0 MB, Pexels Freestock, vom User heruntergeladen)
-- images/hero.jpg — Originalbild (noch vorhanden aber nicht mehr im Einsatz)
-- images/galerie-1..6.jpg — Bilder für Service-Showcases und Winterdienst-Fullbleed
+- /Users/joel/hausmeisterservice-rosenheim/index.html — Startseite mit Video Scrubbing Hero
+- /Users/joel/hausmeisterservice-rosenheim/styles.css — Gesamtes Design inkl. .hero-scrub-* Styles
+- /Users/joel/hausmeisterservice-rosenheim/script.js — Nav + Scroll-Reveal + Video Scrubbing Logic (Blob-Load + onScrubScroll)
+- /Users/joel/hausmeisterservice-rosenheim/videos/hero_scrub.mp4 — Scrubbing-Video (25MB, Portrait 1076×1924)
+- /Users/joel/hausmeisterservice-rosenheim/videos/hero.mp4 — Altes Hero-Video (6MB, nicht mehr verwendet)
+- /Users/joel/hausmeisterservice-rosenheim/images/ — galerie-1..6.jpg für Service-Showcases
 
 🔑 CREDENTIALS, KEYS & WICHTIGE INFOS
-- GitHub-Repo: https://github.com/joelrich333-dot/hausmeisterservice-rosenheim
-- GitHub-User: joelrich333-dot
-- Vercel-URL (Production): https://hausmeisterservice-rosenheim.vercel.app
+- Website live: https://hausmeisterservice-rosenheim.vercel.app
 - Vercel Project-ID: prj_TuoisNIkNcztLFLnKfldEk1iSf1m
 - Vercel Org-ID: team_4G8nyXoRmSmTbnarqfU7iRQl
-- Vercel Deploy-Befehl: `cd ~/hausmeisterservice-rosenheim && vercel --prod --yes`
+- Deploy-Befehl: cd ~/hausmeisterservice-rosenheim && vercel --prod --yes
+- GitHub-Repo: https://github.com/joelrich333-dot/hausmeisterservice-rosenheim
 - Firmen-E-Mail: info@hausmeisterservice-rosenheim.de
 - Inhaber: Florian Barth, Flurstrasse 1b, 83043 Bad Aibling
 - Telefon: +49 178 6323146
-- USt-ID: 156/202/60921
 - Facebook: https://www.facebook.com/Hausmeisterservice-Rosenheim-330159847586486/
+- Video generiert mit: ElevenLabs → Kling O3, 10s, 1080p, 9:16 Portrait
+- ffmpeg-Befehl (ohne Scale, weil Portrait): ffmpeg -i input.mp4 -movflags faststart -vcodec libx264 -crf 18 -g 2 -pix_fmt yuv420p -an output.mp4
 
 💡 SOFORT-KONTEXT FÜR NEUEN CHAT
-Die Website ist live unter https://hausmeisterservice-rosenheim.vercel.app — alle 7 Seiten funktionieren, Bricolage Grotesque ist die Headline-Schrift, Hero nutzt jetzt ein Video (videos/hero.mp4, 6 MB Pexels Freestock) statt einem Bild. Der Workflow für jede Änderung: Dateien editieren → `git add . && git commit -m "..." && git push origin main` → `vercel --prod --yes`. Framer Motion ist NICHT möglich (kein React/Build-Step) — bei Animations-Wünschen GSAP via CDN-Script-Tag vorschlagen (wurde bereits kurz getestet, aber Scroll-Scrub-Experiment auf Wunsch rückgängig gemacht). Als nächstes kommen Team-Fotos: Joel schickt Bilder per Chat-Upload für Florian Barth, J. Eder, M. Mandl, C. Kainzmaier, E. Pasztorne Novak und L. Pasztor.
+Die Website ist live. Der Video Scrubbing Hero funktioniert technisch (Blob-Load, seekable, Scroll → currentTime), hat aber ein Qualitätsproblem: Das Kling-Video ist Portrait (9:16, 1076×1924) und wird fullscreen auf einem Landscape-Hero (16:9) dargestellt → 1.78× Upscale → sieht unscharf aus. Joel muss entscheiden: A) neues 16:9 Video in Kling generieren, oder B) CSS-Fix mit Portrait-Video zentriert + gleiche Video geblurrt als Background. Kein Framework, kein Build-Step — reines HTML/CSS/JS. Deploy: `vercel --prod --yes` im Projektordner.
