@@ -108,4 +108,57 @@
       });
   }
 
+  /* ── Hero Video Scrubbing ────────────────────────────────── */
+  const scrubVideo   = document.getElementById('scrubVideo');
+  const scrubSection = document.getElementById('hero-scrub');
+  const progressBar  = document.getElementById('scrubProgressBar');
+
+  if (scrubVideo && scrubSection) {
+    scrubVideo.pause();
+
+    function onScrubScroll() {
+      const rect     = scrubSection.getBoundingClientRect();
+      const total    = scrubSection.offsetHeight - window.innerHeight;
+      const scrolled = -rect.top;
+      const progress = Math.min(Math.max(scrolled / total, 0), 1);
+
+      if (scrubVideo.seekable.length && scrubVideo.seekable.end(0) > 0) {
+        scrubVideo.currentTime = progress * scrubVideo.duration;
+      }
+      if (progressBar) {
+        progressBar.style.width = (progress * 100) + '%';
+      }
+    }
+
+    function initScrub() {
+      const src = scrubVideo.querySelector('source')
+        ? scrubVideo.querySelector('source').src
+        : scrubVideo.src;
+
+      fetch(src)
+        .then(function (r) { return r.blob(); })
+        .then(function (blob) {
+          scrubVideo.src = URL.createObjectURL(blob);
+          scrubVideo.load();
+          scrubVideo.addEventListener('canplaythrough', function () {
+            scrubVideo.pause();
+            window.addEventListener('scroll', onScrubScroll, { passive: true });
+            onScrubScroll();
+          }, { once: true });
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          initScrub();
+          obs.disconnect();
+        }
+      }, { rootMargin: '200px' });
+      obs.observe(scrubSection);
+    } else {
+      initScrub();
+    }
+  }
+
 })();

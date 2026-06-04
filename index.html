@@ -69,36 +69,34 @@
   <!-- ── MAIN ───────────────────────────────────────────── -->
   <main id="main" class="page-content">
 
-    <!-- Hero Fullwidth -->
-    <section class="hero-fullwidth" aria-label="Willkommen">
-      <div class="hero-fullwidth-bg">
-        <video class="hero-video-bg" autoplay muted loop playsinline>
-          <source src="videos/hero.mp4" type="video/mp4">
+    <!-- Hero Video Scrubbing -->
+    <section class="hero-scrub" aria-label="Willkommen" id="hero-scrub">
+      <div class="hero-scrub-sticky">
+        <video class="hero-scrub-video" id="scrubVideo" muted playsinline preload="auto">
+          <source src="videos/hero_scrub.mp4" type="video/mp4">
         </video>
-      </div>
-      <div class="hero-fullwidth-overlay" aria-hidden="true"></div>
-      <div class="hero-fullwidth-content">
-        <div class="hero-fullwidth-text">
-          <p class="hero-eyebrow reveal reveal-1">Landkreis Rosenheim &amp; darüber hinaus</p>
-          <h1 class="reveal reveal-2">Willkommen bei unserem Hausmeisterservice-Rosenheim mit Sitz in Bad Aibling</h1>
-          <p class="reveal reveal-3">Wir bieten zuverlässigen Service und individuelle Lösungen rund um Ihre Immobilien im gesamten Landkreis Rosenheim und darüber hinaus an.</p>
-          <div class="reveal reveal-4" style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <div class="hero-scrub-overlay" aria-hidden="true"></div>
+        <div class="hero-scrub-content">
+          <p class="hero-eyebrow">Landkreis Rosenheim &amp; darüber hinaus</p>
+          <h1>Ihr Gebäude.<br>Makellos sauber.</h1>
+          <p>Professionelle Reinigung und zuverlässiger Hausmeisterservice im gesamten Landkreis Rosenheim.</p>
+          <div class="hero-scrub-btns">
             <a href="mailto:info@hausmeisterservice-rosenheim.de?subject=Terminanfrage" class="btn btn-primary">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="3" width="14" height="13" rx="2" stroke="white" stroke-width="1.5"/><path d="M2 7H16" stroke="white" stroke-width="1.5"/><path d="M6 2V4M12 2V4" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Termin anfragen
             </a>
-            <a href="mailto:info@hausmeisterservice-rosenheim.de" class="btn" style="background:rgba(255,255,255,.15); color:#fff; border:2px solid rgba(255,255,255,.5); backdrop-filter:blur(4px);">
+            <a href="mailto:info@hausmeisterservice-rosenheim.de" class="btn btn-ghost">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 4.5H15C15.83 4.5 16.5 5.17 16.5 6V12C16.5 12.83 15.83 13.5 15 13.5H3C2.17 13.5 1.5 12.83 1.5 12V6C1.5 5.17 2.17 4.5 3 4.5Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M1.5 6L9 10.5L16.5 6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
               Kontakt aufnehmen
             </a>
           </div>
+          <div class="hero-scrub-hint" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M10 17l-4-4M10 17l4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Scrollen
+          </div>
         </div>
-        
-        <!-- Das eigentliche, scharfe Video im vollen Format für Desktop -->
-        <div class="hero-video-main-wrapper reveal reveal-5">
-          <video class="hero-video-main" autoplay muted loop playsinline>
-            <source src="videos/hero.mp4" type="video/mp4">
-          </video>
+        <div class="hero-scrub-progress" id="scrubProgress" aria-hidden="true">
+          <div class="hero-scrub-progress-bar" id="scrubProgressBar"></div>
         </div>
       </div>
     </section>
