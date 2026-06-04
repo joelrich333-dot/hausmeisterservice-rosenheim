@@ -140,11 +140,19 @@
         .then(function (blob) {
           scrubVideo.src = URL.createObjectURL(blob);
           scrubVideo.load();
-          scrubVideo.addEventListener('canplaythrough', function () {
+
+          var scrubStarted = false;
+          function startScrub() {
+            if (scrubStarted) return;
+            scrubStarted = true;
             scrubVideo.pause();
             window.addEventListener('scroll', onScrubScroll, { passive: true });
             onScrubScroll();
-          }, { once: true });
+          }
+          // canplaythrough = enough data to play through (desktop / Android)
+          scrubVideo.addEventListener('canplaythrough', startScrub, { once: true });
+          // loadeddata fires earlier — fallback for iOS Safari
+          scrubVideo.addEventListener('loadeddata', startScrub, { once: true });
         });
     }
 
