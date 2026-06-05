@@ -2,7 +2,7 @@
 
 ---
 
-PROJEKT-ZUSAMMENFASSUNG — Hausmeisterservice Rosenheim / Video Scrubbing Hero — 04.06.2026
+PROJEKT-ZUSAMMENFASSUNG — Hausmeisterservice Rosenheim — 2026-06-05
 
 🎯 ZIEL
 Komplette Multi-Page Website für "Hausmeisterservice Rosenheim" (Inhaber: Florian Barth, Bad Aibling) als reines HTML/CSS/JS-Projekt — deployed auf Vercel. Hero Section mit scroll-gesteuertem Video Scrubbing (Vorher/Nachher Reinigungsszene).
@@ -11,38 +11,40 @@ Komplette Multi-Page Website für "Hausmeisterservice Rosenheim" (Inhaber: Flori
 - 7 HTML-Seiten: index, ueber-uns, unser-team, jobs, partner, impressum, datenschutz
 - Design: Bricolage Grotesque + Outfit, Grün/Weiß/Dunkelgrau
 - Glassmorphism Sticky-Header mit mobilem Hamburger-Menü
-- Video Scrubbing Hero Section eingebaut:
-  • hero_scrub.mp4 (25MB, 1076×1924 Portrait, 10s, von Kling O3 via ElevenLabs generiert)
-  • ffmpeg optimiert: libx264, CRF 18, -g 2, faststart, kein Audio
-  • JS: Video wird als Blob geladen (garantiert seekbar), currentTime per scroll gesteuert
-  • Sticky-Position, 5× Viewport Scrollbereich, grüner Fortschrittsbalken, "Scrollen"-Hint
+- Video Scrubbing Hero Section:
+  • hero_scrub.mp4 (22MB, 1920×1098 Landscape 16:9, 10s, von Kling O3 via ElevenLabs generiert)
+  • ffmpeg optimiert: libx264, CRF 18, -g 2, faststart, kein Audio, scale=1920:-2
+  • JS: Video wird als Blob geladen (seekable), currentTime per scroll gesteuert
+  • Sticky-Position, 5× Viewport Scrollbereich, grüner Fortschrittsbalken
   • Headline: "Ihr Gebäude. Makellos sauber."
+  • iOS Safari Fallback: loadeddata-Event als Backup für canplaythrough
+- SCROLLEN-Hint jetzt horizontal zentriert (left: 50vw statt left: 50%)
+- Desktop + Mobile getestet und verifiziert (Playwright): Scrubbing funktioniert auf beiden
 - 5 Service-Showcase-Sektionen + 13 Leistungskacheln
 - Footer auf allen Seiten
-- Deployed auf Vercel (letzter Commit: 8f51ae6)
+- Deployed auf Vercel (letzter Commit: 48fdbb5)
 
 📍 AKTUELLER STAND
-Video Scrubbing Hero ist live und funktioniert technisch einwandfrei. Offenes Problem: Das Video wirkt unscharf, weil es Portrait (1076×1924, 9:16) ist, aber der Hero Landscape (16:9 Fullscreen) ist → Browser muss 1.78× upscalen → Blur.
+Website ist live und funktioniert auf Desktop + Mobile. Letzter Commit: SCROLLEN-Hint mittig positioniert (50vw). Joel hat ein Video gezeigt (Nike-Drop-Karussell-UI) und möchte etwas Ähnliches für Hausmeisterservice bauen — Brainstorming wurde gestartet, aber noch nicht abgeschlossen (Joel hat /summary davor aufgerufen).
 
 🐛 BEKANNTE BUGS & OFFENE FEHLER
-- 🔴 [hero] Video erscheint unscharf/niedrig aufgelöst weil Portrait-Video (1076px breit) auf Fullscreen-Landscape-Hero (1920px) upgeskaliert wird (1.78× Upscale). Encoding-Qualität ist gut (CRF 18), das Problem ist rein geometrisch/CSS.
 - 🟡 GitHub ↔ Vercel Auto-Deploy nicht verbunden — Deploy manuell via `vercel --prod --yes`
 - 🟡 Team-Fotos fehlen für 6 Teammitglieder (Initialen-Avatare als Platzhalter)
+- 🟡 Rohvideo (ElevenLabs_video_kling-o-3_Slow dolly...) liegt noch in /videos/ — könnte gelöscht werden
 
 ⏭️ NÄCHSTE SCHRITTE
-1. Qualitätsproblem beheben — zwei Optionen (Joel entscheidet):
-   A) Video neu in Kling als 16:9 Landscape (1920×1080) generieren → bester Fix
-   B) CSS-Fix: Portrait-Video zentriert auf volle Höhe + gleiches Video stark geblurrt als Background (wie alter Hero-Aufbau) → sofort umsetzbar ohne neues Video
-2. Nach Fix: `git add . && git commit -m "..."` + `vercel --prod --yes`
-3. Optional: Team-Fotos einbauen (Joel schickt Bilder)
-4. Optional: WhatsApp-Button, Kontaktformular, Bewertungen-Sektion
+1. Karussell-Sektion bauen (ähnlich wie Nike-Drop-Karussell aus dem Video):
+   - Horizontale Card-Slider mit < / > Navigation
+   - Für Hausmeisterservice: z.B. saisonale Angebote / Leistungen der Woche
+   - Brainstorming war in Gang — Joel möchte darüber sprechen was genau rein soll
+2. Team-Fotos einbauen (Joel schickt Bilder)
+3. Optional: WhatsApp-Button, Kontaktformular, Bewertungen-Sektion
 
 📁 WICHTIGE DATEIEN & STRUKTUR
 - /Users/joel/hausmeisterservice-rosenheim/index.html — Startseite mit Video Scrubbing Hero
-- /Users/joel/hausmeisterservice-rosenheim/styles.css — Gesamtes Design inkl. .hero-scrub-* Styles
-- /Users/joel/hausmeisterservice-rosenheim/script.js — Nav + Scroll-Reveal + Video Scrubbing Logic (Blob-Load + onScrubScroll)
-- /Users/joel/hausmeisterservice-rosenheim/videos/hero_scrub.mp4 — Scrubbing-Video (25MB, Portrait 1076×1924)
-- /Users/joel/hausmeisterservice-rosenheim/videos/hero.mp4 — Altes Hero-Video (6MB, nicht mehr verwendet)
+- /Users/joel/hausmeisterservice-rosenheim/styles.css — Gesamtes Design (1404 Zeilen)
+- /Users/joel/hausmeisterservice-rosenheim/script.js — Nav + Scroll-Reveal + Video Scrubbing Logic
+- /Users/joel/hausmeisterservice-rosenheim/videos/hero_scrub.mp4 — Scrubbing-Video (22MB, 1920×1098)
 - /Users/joel/hausmeisterservice-rosenheim/images/ — galerie-1..6.jpg für Service-Showcases
 
 🔑 CREDENTIALS, KEYS & WICHTIGE INFOS
@@ -55,8 +57,8 @@ Video Scrubbing Hero ist live und funktioniert technisch einwandfrei. Offenes Pr
 - Inhaber: Florian Barth, Flurstrasse 1b, 83043 Bad Aibling
 - Telefon: +49 178 6323146
 - Facebook: https://www.facebook.com/Hausmeisterservice-Rosenheim-330159847586486/
-- Video generiert mit: ElevenLabs → Kling O3, 10s, 1080p, 9:16 Portrait
-- ffmpeg-Befehl (ohne Scale, weil Portrait): ffmpeg -i input.mp4 -movflags faststart -vcodec libx264 -crf 18 -g 2 -pix_fmt yuv420p -an output.mp4
+- Video generiert mit: ElevenLabs → Kling O3, 10s, 1080p, 16:9 Landscape
+- ffmpeg-Befehl (Landscape): ffmpeg -y -i input.mp4 -vf scale=1920:-2 -movflags faststart -vcodec libx264 -crf 18 -g 2 -pix_fmt yuv420p -an output.mp4
 
 💡 SOFORT-KONTEXT FÜR NEUEN CHAT
-Die Website ist live. Der Video Scrubbing Hero funktioniert technisch (Blob-Load, seekable, Scroll → currentTime), hat aber ein Qualitätsproblem: Das Kling-Video ist Portrait (9:16, 1076×1924) und wird fullscreen auf einem Landscape-Hero (16:9) dargestellt → 1.78× Upscale → sieht unscharf aus. Joel muss entscheiden: A) neues 16:9 Video in Kling generieren, oder B) CSS-Fix mit Portrait-Video zentriert + gleiche Video geblurrt als Background. Kein Framework, kein Build-Step — reines HTML/CSS/JS. Deploy: `vercel --prod --yes` im Projektordner.
+Die Website ist live auf Vercel (reines HTML/CSS/JS, kein Framework, kein Build-Step). Video Scrubbing Hero mit dem neuen 1920×1098 Landscape-Video funktioniert auf Desktop + Mobile inkl. iOS Safari Fallback. Joel möchte eine Karussell-Sektion ähnlich dem Nike-Drops-UI aus einem Screencast einbauen — horizontale Cards mit < / > Navigation für saisonale Leistungen/Angebote. Das Brainstorming dazu lief noch, bevor /summary aufgerufen wurde. Deploy immer mit `vercel --prod --yes` (kein GitHub Auto-Deploy). Kein Node.js nötig — alles vanilla HTML/CSS/JS.
