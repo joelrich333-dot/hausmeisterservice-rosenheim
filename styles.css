@@ -167,6 +167,15 @@ body::before {
   text-transform: uppercase;
 }
 
+.nav-logo-img {
+  height: 54px;
+  width: auto;
+  display: block;
+}
+@media (max-width: 600px) {
+  .nav-logo-img { height: 44px; }
+}
+
 /* Desktop nav links */
 .nav-links {
   display: flex;
